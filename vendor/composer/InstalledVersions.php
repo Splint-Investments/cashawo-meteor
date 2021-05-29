@@ -32,20 +32,11 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ff3617653eaa418d315cb7f95305a8fa7a83815a',
-    'name' => '__root__',
+    'reference' => '89ec4f9e5d43fcfc4402e398099e57b7f1348413',
+    'name' => 'splintug/cashawometeor',
   ),
   'versions' => 
   array (
-    '__root__' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'ff3617653eaa418d315cb7f95305a8fa7a83815a',
-    ),
     'dragonmantank/cron-expression' => 
     array (
       'pretty_version' => 'v3.1.0',
@@ -70,6 +61,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '0acfa032e60f0ea22a27b96a6b15a673a31d3448',
+    ),
+    'splintug/cashawometeor' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '89ec4f9e5d43fcfc4402e398099e57b7f1348413',
     ),
     'symfony/polyfill-ctype' => 
     array (
