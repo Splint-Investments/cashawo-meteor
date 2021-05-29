@@ -6,12 +6,12 @@
                 <input class="transparent s-24 text-white b-0 font-weight-lighter w-128 height-50" type="text"
                        placeholder="start typing...">
             </div>
-            <a href="#" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-expanded="false"
-               aria-label="Toggle navigation" class="paper-nav-toggle paper-nav-white text-mild active "><i></i></a>
+            <!-- <a href="#" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-expanded="false"
+               aria-label="Toggle navigation" class="paper-nav-toggle paper-nav-white text-mild active "><i></i></a> -->
         </div>
     </div>
 </div>
-    <div class="sticky">
+    <div >
         <div class="navbar navbar-expand navbar-dark d-flex justify-content-between bd-navbar bg-main">
             <div class="relative">
                     <i></i>

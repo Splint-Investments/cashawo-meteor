@@ -21,6 +21,11 @@
                aria-controls="userSettingsCollapse" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
                 <i class="icon icon-more_vert"></i>
             </a>
+
+            <a data-toggle="collapse" href="#navbarToggleExternalContent" role="button" aria-expanded="false"
+               aria-controls="navbarToggleExternalContent" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
+                <i class="icon icon-more_vert"></i>
+            </a>
             <div class="user-panel p-3 light mb-2  bg-main">
                 <div>
                     <div class="float-left image">

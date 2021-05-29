@@ -56,7 +56,7 @@ class Auth extends MX_Controller {
 				"names"=>$person->fullNames,
 				"user_id"=>$person->user_id,
 				"agentNo"=>(empty($person->agentNo)? $person->agentNo: 'N/A'),
-        "agentName"=>(empty($person->agentName)? $person->agentName: $person->username),
+                "agentName"=>(empty($person->agentName)? $person->agentName: $person->username),
 				"photo"=>$person->photo,
 				"username"=>$person->username,
 				"role"=>$person->userTypeName,
