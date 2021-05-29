@@ -1,5 +1,5 @@
 {
-"name":"Cashawo Meteor",
+"name":"CashawoMeteor",
 "description":"The cashawo engine",    
 "require": {
         "peppeocchi/php-cron-scheduler": "^4.0"
