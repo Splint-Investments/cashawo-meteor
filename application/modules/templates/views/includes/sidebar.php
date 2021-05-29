@@ -22,7 +22,7 @@
                 <i class="icon icon-more_vert"></i>
             </a>
 
-            <a data-toggle="collapse" href="#navbarToggleExternalContent" role="button" aria-expanded="false"
+            <a style="left:40px" data-toggle="collapse" href="#navbarToggleExternalContent" role="button" aria-expanded="false"
                aria-controls="navbarToggleExternalContent" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
                 <i class="icon icon-more_vert"></i>
             </a>
