@@ -44,8 +44,6 @@ class Auth extends MX_Controller
 		}
 	}
 
-
-
 	public function login()
 	{
 		$person = $this->auth_mdl->loginChecker();
@@ -176,7 +174,7 @@ class Auth extends MX_Controller
 		session_unset();
 		session_destroy();
 
-		redirect("auth");
+		redirect(base_url());
 	}
 
 	public function getUserByid($id)
