@@ -20,7 +20,9 @@
             
      
          <a href="#" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-expanded="false"
-               aria-label="Toggle navigation" class="paper-nav-toggle paper-nav-white text-mild active "><i></i></a>
+               aria-label="Toggle navigation" class="paper-nav-toggle paper-nav-white text-mild active "><i>
+                   MENU
+               </i></a>
             <!--Top Menu Start -->
 
             <?php /*?>
