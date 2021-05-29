@@ -2,5 +2,5 @@
     "require": {
         "peppeocchi/php-cron-scheduler": "^4.0"
     },
-   "license": "GPL-2.0-or-later",
+   "license": "GPL-2.0-or-later"
 }
