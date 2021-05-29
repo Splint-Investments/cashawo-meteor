@@ -33,6 +33,15 @@ $config= Modules::run("settings/getAll");
             top: 50%;
             left: 50%;
         }
+    
+    
+    
+            #nprogress,.paper-nav-toggle{
+              display: none;
+            }
+     
+
+
     </style>
     <!-- Js -->
     <!--
@@ -93,25 +102,24 @@ $config= Modules::run("settings/getAll");
     <div id="primary" class="p-t-b-100 height-full">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mx-md-auto paper-card" style="background-color: #750f27;">
+                <div class="col-lg-4 mx-md-auto paper-card" style="background-color:  #0d5980;">
                     <div class="text-center">
                         <img src="<?php echo base_url(); ?>assets/img/basic/<?php echo $config->main_logo; ?>" width="100px">
                         <h3 class="mt-2 text-white"><?php echo $config->system_name; ?></h3>
-                        
-                        <small>Admin Login</small>
-                        
+                            <small style="padding:5px;">Merchant Login</small>
+                            <br>
                     </div>
-                    <form action="<?php echo base_url(); ?>auth/admin_login" method="post">
+                    <form action="<?php echo base_url(); ?>auth/login" method="post">
                            <?php 
                            echo "<font color='red'>".$this->session->flashdata('msg')."</font>";
                             ?>
                         <div class="form-group has-icon"><i class="icon-envelope-o"></i>
                             <input type="text" class="form-control form-control-lg"
-                                   placeholder="Username" name='username'>
+                                   placeholder="Merchant Username" name='username'>
                         </div>
                         <div class="form-group has-icon"><i class="icon-user-secret"></i>
                             <input type="password" class="form-control form-control-lg"
-                                   placeholder="Password" name="pass">
+                                   placeholder="Merchant Password" name="pass">
                         </div>
                         <input type="submit" class="btn btn-dark btn-lg btn-block" value="Log In">
                     </form>

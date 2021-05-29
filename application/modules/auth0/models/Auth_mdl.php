@@ -11,39 +11,6 @@ class Auth_mdl extends CI_Model {
         }
 
 	
-	
-public function adminLoginChecker(){
-
-	$postdata=$this->input->post();
-
-	$username=$postdata['username'];
-	$password=md5($postdata['pass']);
-
-	$this->db->where("username",$username);
-	$this->db->where("password",$password);
-	$this->db->where("users.status",1);
-	$this->db->where("users.userType in (1,0)");
-	$this->db->join("agents","users.user_id=agents.userId",'left');
-	$this->db->join("usertypes","users.userType=usertypes.id",'left');
-	$qry=$this->db->get($this->table);
-
-	$rows=$qry->num_rows();
-
-	if($rows!==0){
-
-	$person=$qry->row();
-
-
-	return $person;
-
-   }
-
-   else{
-
-   	return "failed";
-
-   }
-}
 public function loginChecker(){
 
 	$postdata=$this->input->post();
@@ -54,8 +21,9 @@ public function loginChecker(){
 	$this->db->where("username",$username);
 	$this->db->where("password",$password);
 	$this->db->where("users.status",1);
-	//$this->db->where("users.userType",1);
-	$this->db->join("agents","users.user_id=agents.userId",'left');
+	$this->db->where("users.userType",1);
+   // $this->db->where_in("agents.status", [1,2]);
+	//$this->db->join("agents","users.user_id=agents.userId",'left');
 	$this->db->join("usertypes","users.userType=usertypes.id",'left');
 	$qry=$this->db->get($this->table);
 
@@ -64,8 +32,9 @@ public function loginChecker(){
 	if($rows!==0){
 
 	$person=$qry->row();
-
-
+	
+	if(empty($person->photo))
+	 $person->photo="avatar.jpg";
 	return $person;
 
    }
@@ -113,7 +82,6 @@ public function getAll(){
 //$this->db->where("inc",0);
 
 //$this->db->join("locations","locations.location_id=users.location_id");
-//$this->where('userType','1');
 $qry=$this->db->get($this->table);
 
 return $qry->result();
@@ -122,10 +90,9 @@ return $qry->result();
 
 public function addUser($postdata){
 
-	//$postdata['password']=md5($postdata['password']);
+	$postdata['password']=md5($postdata['password']);
 
-//	$postdata['state']=1;
-
+	$postdata['state']=1;
 
 	$qry=$this->db->insert($this->table,$postdata);
 	$rows=$this->db->affected_rows();
@@ -189,24 +156,14 @@ $this->db->update($this->table,$data);
 $rows=$this->db->affected_rows();
 
 if($rows==1){
-
 	return "ok";
-
-
 } else{
-
-
-
 	return "Operation failed for an unknown reason, try again";
 }
-
-
 
 }
 
 else{
-
-
 	return "The old password you provided is wrong";
 }
 
@@ -286,17 +243,12 @@ if($rows==1){
 
 	return "User has been blocked";
 
-
 } else{
 
 
 
 	return "Failed, Try Again";
 }
-
-
-
-
 
 
 }
@@ -329,14 +281,6 @@ if($rows==1){
 
 }
 
-public function getAdmins(){
-    
-    $this->db->where('userType',1);
-    $this->db->or_where('userType',0);
-    $qry=$this->db->get($this->table);
-     
-     return $qry->result();
-}
 
 
 

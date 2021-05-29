@@ -2,7 +2,18 @@
 
 $config= Modules::run("settings/getAll");
 
+$locations=Modules::run("location/getAll");
 
+$locationData='<option value="">--Select--</option>';
+
+
+//compile locations to choose from
+
+foreach ($locations as $location):
+
+$locationData .='<option value="'.$location->location_id.'">'.$location->location_name.'</option>';
+
+endforeach;
 
 ?>
 
@@ -29,9 +40,12 @@ $config= Modules::run("settings/getAll");
         <tr>
             <th style="width:2%;">#</th>
             <th>Username</th>
+            <th>Location</td>
             <th>Level</th>
             <th>Firstname</th>
             <th>Lastname</th>
+            <th>Staff ID</th>
+            <th>Photo</th>
             <th style="width:10%;"></th>
         </tr>
     </thead>
@@ -44,11 +58,19 @@ $config= Modules::run("settings/getAll");
                 <input type="text" required name="username"  class="form-control" required/>
             </td>
          
+            <td data-label="Location">
+                <select name="location_id"  class="form-control" required>
+
+                <?php echo $locationData; ?>
+
+                </select>
+            </td>
 
               <td data-label="Level">
                 <select name="role"  class="form-control" required>
-                <option value="0">Normal user</option>
-                <option value="1">Administrator</option>
+
+                <option value="user">Normal user</option>
+                <option value="sadmin">Administrator</option>
 
                 </select>
             </td>
@@ -63,6 +85,9 @@ $config= Modules::run("settings/getAll");
                 <input type="text" name="staffid"  class="form-control" />
 
                 <input type="hidden" name="password" value="<?php echo $config->system_pass; ?>"  class="form-control" />
+            </td>
+            <td data-label="Photo">
+                <input type="file" name="photo" title="User will handle this on their profile" data-toggle="tooltip"  disabled/>
             </td>
 
             <td data-label="" class="col-sm-2"><a class="deleteRow"></a></td>
@@ -82,9 +107,12 @@ $config= Modules::run("settings/getAll");
         <tr>
             <td data-label="#"><?php echo $no; ?></td>
             <td data-label="Username:"><?php echo $user->username; ?></td>
+            <td data-label="Location:"><?php echo $user->location_name; ?></td>
             <td data-label="Role:"><?php echo $user->role; ?></td>
             <td data-label="first Name:"><?php echo $user->firstname; ?></td>
             <td data-label="Last Name:"><?php echo $user->lastname; ?></td>
+            <td data-label="Staff Id:"><?php echo $user->staffid; ?></td>
+            <td data-label="Photo:"><a href="#" data-toggle="modal" data-target="#img<?php echo $user->user_id; ?>" title="Click to show photo" data-toggle="tooltip">Show Photo</a></td>
             <td><a data-toggle="modal" data-target="#user<?php echo $user->user_id; ?>" href="#">Edit</a>
                 |
             <?php if($user->state==1){ ?>

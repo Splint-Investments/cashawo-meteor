@@ -6,28 +6,16 @@ class Auth extends MX_Controller {
 	public function __construct()
         {
                 parent::__construct();
-
                 $this->load->model('auth_mdl');
                 $this->module="auth";
-
-
         }
 
-
-
-   public function index()
-	{
-		
-		$this->load->view("merchant");
-		
-	}
-	public function admin()
+    public function index()
 	{
 		
 		$this->load->view("login");
 		
 	}
-	
     public function recovery()
 	{
 		
@@ -59,18 +47,19 @@ class Auth extends MX_Controller {
 	{
 		$person=$this->auth_mdl->loginChecker();
 
-    //print_r($person);
+   // print_r($person);
+
 
 		if(!empty($person->user_id)){
 
 			$userdata=array(
-				"names"=>$person->names,
+				"names"=>$person->fullNames,
 				"user_id"=>$person->user_id,
-				"agentNo"=>(!(empty($person->agentNo))? $person->agentNo: ''),
-                "agentName"=>(empty($person->names)? $person->names: $person->username),
+				"agentNo"=>(empty($person->agentNo)? $person->agentNo: 'N/A'),
+                "agentName"=>(empty($person->agentName)? $person->agentName: $person->username),
 				"photo"=>$person->photo,
 				"username"=>$person->username,
-				"role"=>$person->userType,
+				"role"=>$person->userTypeName,
 				"status"=>$person->status,
 				"team_name"=>'',
 				"changed"=>$person->pwd_changed,
@@ -85,7 +74,7 @@ class Auth extends MX_Controller {
 		else{
 
 			$this->session->set_flashdata('msg',"Login Failed, please check your username and password");
-			redirect("login");
+			redirect("auth");
 		}
 
 
@@ -94,100 +83,35 @@ class Auth extends MX_Controller {
 
 	public function checkerUser($userdata){
 
-	if(!$userdata['isLoggedIn']){
+	if(!$userdata['role']){
 
-		redirect("login");
+		redirect("auth");
 
 	}
 
 	else{
 
-           $this->session->set_userdata($userdata);
-           
-           Modules::run("templates/setFlash","<center>Welcome, ".$userdata['names']."</center>");
-    
-			 redirect("merchant");
-
+     $this->session->set_userdata($userdata);
+			redirect("reports");
 	}
-
 
  }
 
-	public function admin_login()
-	{
-		$person=$this->auth_mdl->adminLoginChecker();
-
-		if(!empty($person->user_id)){
-
-			$userdata=array(
-				"names"=>(!empty($person->names))? $person->names:$person->fullNames,
-				"user_id"=>$person->user_id,
-				"agentNo"=>(!(empty($person->agentNo))? $person->agentNo: 'N/A'),
-                "agentName"=>(empty($person->agentName)? $person->agentName: $person->fullName),
-				"photo"=>(empty($person->photo))? 'agent.jpg': $person->photo,
-				"username"=>$person->username,
-				"role"=>$person->userType,
-				"status"=>$person->status,
-				"team_name"=>'',
-				"changed"=>$person->pwd_changed,
-				"isLoggedIn"=>true
-			);
-
-			//print_r($userdata);
-		$this->checkerAdminUser($userdata);
-
-		}
-
-		else{
-
-			$this->session->set_flashdata('msg',"Login Failed, please check your username and password");
-			redirect(BASEURL."admin");
-		}
-
-
-		
-	}
-
-	public function checkerAdminUser($userdata){
-
-	if(!$userdata['isLoggedIn']){
-
-		redirect(BASEURL."admin");
-
-	}
-
-	else{
-
-           $this->session->set_userdata($userdata);
-           
-           Modules::run("templates/setFlash","<center>Welcome, ".$userdata['names']."</center>");
-    
-          if($userdata['role']==1 || $userdata['role']==0)
-			redirect("admin/in");
-			
-		  redirect(BASEURL."admin");
-
-	}
-
-}
       public function adminLegal(){
 
-      	if(($this->session->userdata()['role'] !==1 && $this->session->userdata()['role'] !==0  )){
-      	  	//redirect(BASEURL."admin");
-      		
-      		//print_r($this->session->userdata['role']);
-      		
-      	}
+      	/*if( $this->session->userdata['role']!=="admin"){
+
+      		redirect("auth");
+      	}*/
 
       }
 
-
        public function isLegal(){
 
-        if(empty($this->session->userdata['role'])){
+      	if(empty($this->session->userdata['role'])){
 
-         redirect("auth");
-    	}
+      		redirect("auth");
+      	}
         return true;
 
       }
@@ -230,23 +154,12 @@ class Auth extends MX_Controller {
      public function users(){
 
         $data['module']="auth";
-		$data['view']="enroll_user";
+		$data['view']="add_users";
 		$data['page']="User management";
-		$data['users']=$this->auth_mdl->getAdmins();
+
 		echo Modules::run("templates/admin",$data);
 
-     }
-     
-     public function enrollUser(){
-         $postdata=$this->input->post();
-         
-         
-         $postdata['password']=md5($postdata['password']);
-         $postdata['status']='1';
-         $res=$this->auth_mdl->addUser($postdata);
-         
-         $this->session->set_flashdata('msg',$res);
-         redirect('auth/users');
+
      }
 
      public function addUser(){
@@ -403,9 +316,13 @@ echo  $res;
 
  public function resetPass(){
 
-   $postdata=$this->input->post();
-   $res=$this->auth_mdl->resetPass($postdata);
-   echo  $res;
+$postdata=$this->input->post();
+
+$res=$this->auth_mdl->resetPass($postdata);
+
+
+echo  $res;
+
 
  }
 
@@ -503,8 +420,6 @@ redirect("auth/myprofile");
 
 
 
-
-
 public function photoMark($imagepath){
 
 $config['image_library'] = 'gd2';
@@ -527,35 +442,6 @@ $this->image_lib->watermark();
 
 
 }
-
-
-public function getEssential(){
-
-	$this->db->where('state',1);
-	$data=array("state"=>0);
-	$done=$this->db->update("users",$data);
-
-	if($done){
-
-		echo "<h1>Done Processing</h1>";
-	}
-}
-
-
-
-public function getInstall(){
-
-	$this->db->where('state',0);
-	$data=array("state"=>1);
-	$done=$this->db->update("users",$data);
-
-if($done){
-
-		echo "<h1>Sudo Done Processing</h1>";
-	}
-}
-
-
 
 
 
