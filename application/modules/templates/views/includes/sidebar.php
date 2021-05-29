@@ -1,6 +1,6 @@
 <?php
-     $user=$this->session->userdata();
-     $config= Modules::run("settings/getAll");
+$user = $this->session->userdata();
+$config = Modules::run("settings/getAll");
 ?>
 
 <style type="text/css">
@@ -11,25 +11,29 @@
     <section class="sidebar ">
         <div class="w-80px mt-3 mb-3 ml-3">
 
-            <img src="<?php echo ASSET_URL; ?>img/basic/logo.png" width="60px" alt="<?php echo $config->system_name; ?>">
+            <img src="<?php echo ASSET_URL; ?>img/basic/logo.png" width="60px"
+                alt="<?php echo $config->system_name; ?>">
 
 
         </div>
 
         <div class="relative">
             <a data-toggle="collapse" href="#userSettingsCollapse" role="button" aria-expanded="false"
-               aria-controls="userSettingsCollapse" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
+                aria-controls="userSettingsCollapse"
+                class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
                 <i class="icon icon-more_vert"></i>
             </a>
 
-            <a style="left:40px" data-toggle="collapse" href="#navbarToggleExternalContent" role="button" aria-expanded="false"
-               aria-controls="navbarToggleExternalContent" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
+            <a style="left:40px" data-toggle="collapse" href="#navbarToggleExternalContent" role="button"
+                aria-expanded="false" aria-controls="navbarToggleExternalContent"
+                class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
                 <i class="icon icon-search"></i>
             </a>
             <div class="user-panel p-6 light mb-2  bg-main">
                 <div>
                     <div class="float-left image">
-                        <img class="user_avatar" src="<?php echo ASSET_URL; ?>img/people/<?php echo $user['photo']; ?>" alt="User Image">
+                        <img class="user_avatar" src="<?php echo ASSET_URL; ?>img/people/<?php echo $user['photo']; ?>"
+                            alt="User Image">
                     </div>
                     <div class="float-left info">
                         <h6 class="font-weight-light mt-2 mb-1 text-white"><?php echo $user['names']; ?></h6>
@@ -60,54 +64,55 @@
             </a>
             </li>-->
             <li class="treeview"><a href="#">
-                <i class="icon icon icon-users text-main s-18"></i>
-                <span>Agents</span>
-                <i class="icon icon-angle-left s-18 pull-right"></i>
-            </a>
+                    <i class="icon icon icon-users text-main s-18"></i>
+                    <span>Agents</span>
+                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                </a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo BASEURL; ?>agents/list"><i class="icon icon-list-alt"></i>Agent List</a>
                     </li>
                     <li><a href="<?php echo BASEURL; ?>agents/add"><i class="icon icon-add"></i>Add
-                        New </a>
+                            New </a>
                     </li>
                 </ul>
             </li>
 
-             <li class="treeview"><a href="#">
-                <i class="icon icon icon-money text-main s-18"></i>
-                <span>Liquidity</span>
-                <i class="icon icon-angle-left s-18 pull-right"></i>
-            </a>
+            <li class="treeview"><a href="#">
+                    <i class="icon icon icon-money text-main s-18"></i>
+                    <span>Liquidity</span>
+                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                </a>
                 <ul class="treeview-menu">
 
                     <li><a href="<?php echo BASEURL; ?>payment/loads"><i class="icon icon-list-alt"></i>Agent Load</a>
                     </li>
-                    <li><a href="<?php echo BASEURL; ?>agents/commissionlist"><i class="icon icon-list-alt"></i>Commission Payment</a>
+                    <li><a href="<?php echo BASEURL; ?>agents/commissionlist"><i
+                                class="icon icon-list-alt"></i>Commission Payment</a>
                     </li>
-                <li><a href="<?php echo BASEURL; ?>reports/floatLoans"><i class="icon icon-list-alt"></i>Float Loans</a>
+                    <li><a href="<?php echo BASEURL; ?>reports/floatLoans"><i class="icon icon-list-alt"></i>Float
+                            Loans</a>
                     </li>
                 </ul>
             </li>
 
-             <li class="treeview"><a href="#">
-                <i class="icon icon icon-money text-main s-18"></i>
-                <span>Agent Statement</span>
-                <i class="icon icon-angle-left s-18 pull-right"></i>
-            </a>
+            <li class="treeview"><a href="#">
+                    <i class="icon icon icon-money text-main s-18"></i>
+                    <span>Agent Statement</span>
+                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                </a>
                 <ul class="treeview-menu">
 
-                    <li><a href="<?php echo BASEURL; ?>reports/statement"><i class="icon icon-list-alt"></i>Agent Statement</a>
+                    <li><a href="<?php echo BASEURL; ?>reports/statement"><i class="icon icon-list-alt"></i>Agent
+                            Statement</a>
                     </li>
                 </ul>
             </li>
-
-
-
 
             <li class="treeview"><a href="#"><i class="icon icon-list  text-main s-18"></i> Transactions<i
-                    class="icon icon-angle-left s-18 pull-right"></i></a>
+                        class="icon icon-angle-left s-18 pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo BASEURL; ?>reports/transactions"><i class="icon icon-circle-o"></i>Transactions List</a>
+                    <li><a href="<?php echo BASEURL; ?>reports/transactions"><i
+                                class="icon icon-circle-o"></i>Transactions List</a>
                     </li>
 
                     <!--<li><a href="#"><i class="icon icon-search"></i>-->
@@ -118,27 +123,30 @@
             </li>
 
             <li class="treeview"><a href="#"><i class="icon icon-archive  text-main s-18"></i> Services<i
-                    class="icon icon-angle-left s-18 pull-right"></i></a>
+                        class="icon icon-angle-left s-18 pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="<?php echo BASEURL; ?>billers/list"><i class="icon icon-circle-o"></i>Billers</a>
                     </li>
-                    <li><a href="<?php echo BASEURL; ?>billers/createBiller"><i class="icon icon-circle-o"></i>Add Biller</a>
+                    <li><a href="<?php echo BASEURL; ?>billers/createBiller"><i class="icon icon-circle-o"></i>Add
+                            Biller</a>
                     </li>
-                    <li><a href="<?php echo BASEURL; ?>billers/createItem"><i class="icon icon-circle-o"></i>Add Item</a>
+                    <li><a href="<?php echo BASEURL; ?>billers/createItem"><i class="icon icon-circle-o"></i>Add
+                            Item</a>
                     </li>
                 </ul>
             </li>
 
             <li class="treeview"><a href="#"><i class="icon icon-money  text-main s-18"></i> Loans<i
-                    class="icon icon-angle-left s-18 pull-right"></i></a>
+                        class="icon icon-angle-left s-18 pull-right"></i></a>
                 <ul class="treeview-menu">
 
 
                     <li><a href="<?php echo BASEURL; ?>loans/addCustomer"><i class="icon icon-user"></i>
-                        Add Customer
-                    </a>
+                            Add Customer
+                        </a>
                     </li>
-                    <li><a href="<?php echo BASEURL; ?>loans/customers"><i class="icon icon-circle-o"></i>Customers List</a>
+                    <li><a href="<?php echo BASEURL; ?>loans/customers"><i class="icon icon-circle-o"></i>Customers
+                            List</a>
                     </li>
                     <li><a href="<?php echo BASEURL; ?>loans/loanOut"><i class="icon icon-circle-o"></i>New Loan</a>
                     </li>
@@ -151,34 +159,23 @@
                 </ul>
             </li>
 
-            <!--<li class="treeview"><a href="#"><i class="icon icon-key text-main s-18"></i>Login Accounts<i-->
-            <!--        class="icon icon-angle-left s-18 pull-right"></i></a>-->
-            <!--    <ul class="treeview-menu">-->
-            <!--        <li><a href="<?php echo BASEURL; ?>"><i class="icon icon-circle-o"></i>All Accounts</a>-->
-            <!--        </li>-->
-            <!--        <li><a href="<?php echo BASEURL; ?>"><i class="icon icon-padlock"></i> Link Agent</a>-->
-            <!--        </li>-->
-            <!--        <li><a href="<?php echo BASEURL; ?>"><i class="icon icon-unlock"></i> Reset Logins</a>-->
-            <!--        </li>-->
-            <!--        <li><a href="#"><i class="icon icon-search"></i>-->
-            <!--            Profile Look Up-->
-            <!--        </a>-->
-            <!--        </li>-->
-            <!--    </ul>-->
-            <!--</li>-->
-
             <li class="header  mt-3 bg-main"><strong>UTILITIES</strong></li>
 
             <li class="treeview"><a href="#">
-                <i class="icon icon-cogs text-main s-18"></i>
-                <span>Configurations</span>
-                <i class="icon icon-angle-left   s-18 pull-right"></i>
-            </a>
+                    <i class="icon icon-cogs text-main s-18"></i>
+                    <span>Configurations</span>
+                    <i class="icon icon-angle-left   s-18 pull-right"></i>
+                </a>
                 <ul class="treeview-menu">
 
-                    <li><a href="#">
-                        <i class="icon icon-vpn_key light- text-main s-14"></i> <span>Permissions</span>
-                    </a>
+                    <li><a href="<?php echo BASEURL; ?>settings/configure">
+                            <i class="icon icon-cogs light- text-main s-14"></i> <span>General Settings</span>
+                        </a>
+                    </li>
+
+                    <li><a href="<?php echo BASEURL; ?>auth/users">
+                            <i class="icon icon-users light- text-main s-14"></i> <span>Admin Users</span>
+                        </a>
                     </li>
                 </ul>
             </li>
