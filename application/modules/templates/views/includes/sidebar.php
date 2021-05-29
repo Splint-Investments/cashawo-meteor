@@ -7,7 +7,7 @@
 
 
 </style>
-<aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
+<aside class="main-sidebar siderbar-mini fixed  shadow" data-toggle='offcanvas'>
     <section class="sidebar ">
         <div class="w-80px mt-3 mb-3 ml-3">
 
