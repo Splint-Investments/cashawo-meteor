@@ -22,8 +22,8 @@ public function loginChecker(){
 	$this->db->where("password",$password);
 	$this->db->where("users.status",1);
 	$this->db->where("users.userType",1);
-    $this->db->where_in("agents.status", [1,2]);
-	$this->db->join("agents","users.user_id=agents.userId",'left');
+   // $this->db->where_in("agents.status", [1,2]);
+	//$this->db->join("agents","users.user_id=agents.userId",'left');
 	$this->db->join("usertypes","users.userType=usertypes.id",'left');
 	$qry=$this->db->get($this->table);
 
