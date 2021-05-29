@@ -12,20 +12,20 @@ error_reporting(0);
         define("YAAKA_SHARE",0.8);
         define("REFERRAL_COMS",0.05);
 
-		define("ELLYPAY_USERNAME","EPYPUB-202104200754229D0AF75EDE5DAADF7712074AC47D9");
-		define("ELLYPAY_SECRET","EPYSEC-20210420075422A7BDAE81AD883A777ABE23B3E0C27");
+		define("ELLYPAY_USERNAME","EPYPUB-")
+		define("ELLYPAY_SECRET","EPYSEC-")
         define("ELLYPAY_PIN","575103");
 
         define('EZEE_09',array('1026','1015'));
         define("WEBSERVICE_URL","http://ugapi.ezeemoney.biz/v1/API.svc?wsdl"); //old one http://ug.ezeemoney.biz:8082/EMTerminalAPI/v1/API.svc?wsdl
-        define("EZEE_USERNAME","4295432316");
-		define("EZEE_PASSWORD","6444CF2846");
-		define("EZEE_CODE","40023841 ");
+        define("EZEE_USERNAME","");
+		define("EZEE_PASSWORD","");
+		define("EZEE_CODE","");
 
 		//wallet configs
 		define("APP_KEY","HTTP_APP_KEY");
 		define("AGENT_ID","HTTP_AGENT_ID");
-		define("WALLET_KEY","123456789");
+		define("WALLET_KEY","");
 
         define("APP_KEY_HEADER","app_key");
 		define("AGENT_ID_HEADER","agent_id");
@@ -80,10 +80,10 @@ error_reporting(0);
 		define("SVA_BASE_URL", $base_url."v1A/svapayments/");
 		define("APPSERVICE_URL", $base_url."v1/appservice/");
 		define("QT_BASE_URL", $base_url."v1/quickteller/");
-		//define("CLIENT_ID","IKIA8CD105856AEF454FA74E739A8F077331E2BB3407");
-		//define("CLIENT_SECRET","AFlb1IFC0epPZjTecx7h+y4WS7SCvj9WynDBFa6c0novV3yKbz8D/WaueJvmJrHI");
-		define("CLIENT_ID","IKIAD1C286FF27C103D830066E99ECC6ABFCAFAA17C4**");
-		define("CLIENT_SECRET","kh3a+8bl1twmqlsQsZufSuTU8nudmkB3PHP/rj82NW6g6BgH2jSKtG308QJC1zLu**");
+		//define("CLIENT_ID","");
+		//define("CLIENT_SECRET","");
+		define("CLIENT_ID","");
+		define("CLIENT_SECRET","");
      
         define("TIMESTAMP","TIMESTAMP");
         define("NONCE","NONCE");
