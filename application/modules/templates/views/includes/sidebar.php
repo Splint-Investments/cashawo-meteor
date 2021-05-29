@@ -77,6 +77,7 @@ $config = Modules::run("settings/getAll");
                 </ul>
             </li>
 
+            <?php if ($user['role'] == 1) : ?>
             <li class="treeview"><a href="#">
                     <i class="icon icon icon-money text-main s-18"></i>
                     <span>Liquidity</span>
@@ -94,6 +95,7 @@ $config = Modules::run("settings/getAll");
                     </li>
                 </ul>
             </li>
+            <?php endif; ?>
 
             <li class="treeview"><a href="#">
                     <i class="icon icon icon-money text-main s-18"></i>
@@ -159,6 +161,7 @@ $config = Modules::run("settings/getAll");
                 </ul>
             </li>
 
+            <?php if ($user['role'] == 1) : ?>
             <li class="header  mt-3 bg-main"><strong>UTILITIES</strong></li>
 
             <li class="treeview"><a href="#">
@@ -179,7 +182,7 @@ $config = Modules::run("settings/getAll");
                     </li>
                 </ul>
             </li>
-
+            <?php endif; ?>
 
         </ul>
     </section>
