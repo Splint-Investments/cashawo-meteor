@@ -26,7 +26,7 @@
                aria-controls="navbarToggleExternalContent" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
                 <i class="icon icon-more_vert"></i>
             </a>
-            <div class="user-panel p-3 light mb-2  bg-main">
+            <div class="user-panel p-6 light mb-2  bg-main">
                 <div>
                     <div class="float-left image">
                         <img class="user_avatar" src="<?php echo ASSET_URL; ?>img/people/<?php echo $user['photo']; ?>" alt="User Image">
