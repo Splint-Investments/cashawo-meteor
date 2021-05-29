@@ -1,346 +1,302 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth_mdl extends CI_Model {
+class Auth_mdl extends CI_Model
+{
 
 	public function __construct()
-        {
-                parent::__construct();
+	{
+		parent::__construct();
 
-                $this->table="users";
-        }
-
-	
-	
-public function adminLoginChecker(){
-
-	$postdata=$this->input->post();
-
-	$username=$postdata['username'];
-	$password=md5($postdata['pass']);
-
-	$this->db->where("username",$username);
-	$this->db->where("password",$password);
-	$this->db->where("users.status",1);
-	$this->db->where("users.userType in (1,0)");
-	$this->db->join("agents","users.user_id=agents.userId",'left');
-	$this->db->join("usertypes","users.userType=usertypes.id",'left');
-	$qry=$this->db->get($this->table);
-
-	$rows=$qry->num_rows();
-
-	if($rows!==0){
-
-	$person=$qry->row();
-
-
-	return $person;
-
-   }
-
-   else{
-
-   	return "failed";
-
-   }
-}
-public function loginChecker(){
-
-	$postdata=$this->input->post();
-
-	$username=$postdata['username'];
-	$password=md5($postdata['pass']);
-
-	$this->db->where("username",$username);
-	$this->db->where("password",$password);
-	$this->db->where("users.status",1);
-	//$this->db->where("users.userType",1);
-	$this->db->join("agents","users.user_id=agents.userId",'left');
-	$this->db->join("usertypes","users.userType=usertypes.id",'left');
-	$qry=$this->db->get($this->table);
-
-	$rows=$qry->num_rows();
-
-	if($rows!==0){
-
-	$person=$qry->row();
-
-
-	return $person;
-
-   }
-
-   else{
-
-   	return "failed";
-
-   }
-}
-
-public function unlock($pass){
-
-	$uid=$this->session->userdata['user_id'];
-	$username=$this->session->userdata['username'];
-
-$this->db->where("user_id",$uid);
-$this->db->where("username",$username);
-$this->db->where("password",md5($pass));
-
-$qry=$this->db->get($this->table);
-
-$rows=$qry->num_rows();
-
-if($rows==1){
-
-	return "ok";
-}
-
-
-}
-
-public function getUser($id){
-
-$this->db->where("user_id",$id);
-$qry=$this->db->get($this->table);
-
-return $qry->row();
-
-
-}
-
-public function getAll(){
-
-//$this->db->where("inc",0);
-
-//$this->db->join("locations","locations.location_id=users.location_id");
-//$this->where('userType','1');
-$qry=$this->db->get($this->table);
-
-return $qry->result();
-
-}
-
-public function addUser($postdata){
-
-	//$postdata['password']=md5($postdata['password']);
-
-//	$postdata['state']=1;
-
-
-	$qry=$this->db->insert($this->table,$postdata);
-	$rows=$this->db->affected_rows();
-
-	if($rows>0){
-
-		return "User has been Added";
+		$this->table = "users";
 	}
 
-	else{
 
-		return "Operation failed";
+
+	public function adminLoginChecker()
+	{
+
+		$postdata = $this->input->post();
+
+		$username = $postdata['username'];
+		$password = md5($postdata['pass']);
+
+		$this->db->where("username", $username);
+		$this->db->where("password", $password);
+		$this->db->where("users.status", 1);
+		$this->db->where("users.userType in (1,0)");
+		$this->db->join("agents", "users.user_id=agents.userId", 'left');
+		$this->db->join("usertypes", "users.userType=usertypes.id", 'left');
+		$qry = $this->db->get($this->table);
+
+		$rows = $qry->num_rows();
+
+		if ($rows !== 0) {
+			$person = $qry->row();
+			if (empty($person->photo))
+				$person->photo = "avatar.jpg";
+			return $person;
+		} else {
+			return "failed";
+		}
+	}
+	public function loginChecker()
+	{
+
+		$postdata = $this->input->post();
+
+		$username = $postdata['username'];
+		$password = md5($postdata['pass']);
+
+		$this->db->where("username", $username);
+		$this->db->where("password", $password);
+		$this->db->where("users.status", 1);
+		//$this->db->where("users.userType",1);
+		$this->db->join("agents", "users.user_id=agents.userId", 'left');
+		$this->db->join("usertypes", "users.userType=usertypes.id", 'left');
+		$qry = $this->db->get($this->table);
+
+		$rows = $qry->num_rows();
+
+		if ($rows !== 0) {
+
+			$person = $qry->row();
+
+
+			return $person;
+		} else {
+
+			return "failed";
+		}
 	}
 
-}
+	public function unlock($pass)
+	{
 
-// update user's details
+		$uid = $this->session->userdata['user_id'];
+		$username = $this->session->userdata['username'];
 
-public function updateUser($postdata){
+		$this->db->where("user_id", $uid);
+		$this->db->where("username", $username);
+		$this->db->where("password", md5($pass));
 
-    $uid=$postdata['user_id'];
+		$qry = $this->db->get($this->table);
 
-	$this->db->where('user_id',$uid);
+		$rows = $qry->num_rows();
 
-	$this->db->update($this->table,$postdata);
-	$rows=$this->db->affected_rows();
+		if ($rows == 1) {
 
-	if($rows>0){
-
-		return "User details for".$postdata['lastname']." ".$postdata['firstname']." have been updated";
+			return "ok";
+		}
 	}
 
-	else{
+	public function getUser($id)
+	{
 
-		return "No Operation made, seems like no changes made";
+		$this->db->where("user_id", $id);
+		$qry = $this->db->get($this->table);
+
+		return $qry->row();
 	}
 
-}
+	public function getAll()
+	{
 
+		//$this->db->where("inc",0);
 
-// change password
-public function changePass($postdata){
+		//$this->db->join("locations","locations.location_id=users.location_id");
+		//$this->where('userType','1');
+		$qry = $this->db->get($this->table);
 
-$oldpass=md5($postdata['oldpass']);
-$newpass=md5($postdata['newpass']);
-$uid=$postdata['uid'];
+		return $qry->result();
+	}
 
+	public function addUser($postdata)
+	{
 
-$this->db->select('password');
-$this->db->where('user_id',$uid);
-$qry=$this->db->get($this->table);
+		//$postdata['password']=md5($postdata['password']);
 
-$user=$qry->row();
+		//	$postdata['state']=1;
 
-if($user->password==$oldpass){
-// change the password
 
-$data=array("password"=>$newpass,"pass_change"=>1);
-$this->db->where('user_id',$uid);
-$this->db->update($this->table,$data);
-$rows=$this->db->affected_rows();
+		$qry = $this->db->insert($this->table, $postdata);
+		$rows = $this->db->affected_rows();
 
-if($rows==1){
+		if ($rows > 0) {
 
-	return "ok";
+			return "User has been Added";
+		} else {
 
+			return "Operation failed";
+		}
+	}
 
-} else{
+	// update user's details
 
+	public function updateUser($postdata)
+	{
 
+		$uid = $postdata['user_id'];
 
-	return "Operation failed for an unknown reason, try again";
-}
+		$this->db->where('user_id', $uid);
 
+		$this->db->update($this->table, $postdata);
+		$rows = $this->db->affected_rows();
 
+		if ($rows > 0) {
 
-}
+			return "User details for" . $postdata['lastname'] . " " . $postdata['firstname'] . " have been updated";
+		} else {
 
-else{
+			return "No Operation made, seems like no changes made";
+		}
+	}
 
 
-	return "The old password you provided is wrong";
-}
+	// change password
+	public function changePass($postdata)
+	{
 
+		$oldpass = md5($postdata['oldpass']);
+		$newpass = md5($postdata['newpass']);
+		$uid = $postdata['uid'];
 
 
-}
+		$this->db->select('password');
+		$this->db->where('user_id', $uid);
+		$qry = $this->db->get($this->table);
 
+		$user = $qry->row();
 
+		if ($user->password == $oldpass) {
+			// change the password
 
+			$data = array("password" => $newpass, "pass_change" => 1);
+			$this->db->where('user_id', $uid);
+			$this->db->update($this->table, $data);
+			$rows = $this->db->affected_rows();
 
-public function updateProfile($postdata){
+			if ($rows == 1) {
 
-$uid=$postdata['user_id'];
+				return "ok";
+			} else {
 
-$this->db->where('user_id',$uid);
-$done=$this->db->update($this->table,$postdata);
-$rows=$this->db->affected_rows();
 
-if($rows==1){
 
-	return "ok";
+				return "Operation failed for an unknown reason, try again";
+			}
+		} else {
 
 
-} else{
+			return "The old password you provided is wrong";
+		}
+	}
 
 
 
-	return "Nothing done, changes deemed to be Null";
-}
 
+	public function updateProfile($postdata)
+	{
 
+		$uid = $postdata['user_id'];
 
+		$this->db->where('user_id', $uid);
+		$done = $this->db->update($this->table, $postdata);
+		$rows = $this->db->affected_rows();
 
+		if ($rows == 1) {
 
-}
+			return "ok";
+		} else {
 
 
-//reset user's password
 
-public function resetPass($postdata){
+			return "Nothing done, changes deemed to be Null";
+		}
+	}
 
-$uid=$postdata['user_id'];
-$password=md5($postdata['password']);
 
-$data=array("password"=>$password,"pass_change"=>0);
+	//reset user's password
 
-$this->db->where('user_id',$uid);
-$done=$this->db->update($this->table,$data);
-$rows=$this->db->affected_rows();
+	public function resetPass($postdata)
+	{
 
-if($rows==1){
+		$uid = $postdata['user_id'];
+		$password = md5($postdata['password']);
 
-	return "User's password has been reset";
+		$data = array("password" => $password, "pass_change" => 0);
 
+		$this->db->where('user_id', $uid);
+		$done = $this->db->update($this->table, $data);
+		$rows = $this->db->affected_rows();
 
-} else{
+		if ($rows == 1) {
 
+			return "User's password has been reset";
+		} else {
 
 
-	return "Failed, Try Again";
-}
-}
 
-//block
+			return "Failed, Try Again";
+		}
+	}
 
-public function blockUser($postdata){
+	//block
 
-$uid=$postdata['user_id'];
+	public function blockUser($postdata)
+	{
 
-$data=array("state"=>0);
+		$uid = $postdata['user_id'];
 
-$this->db->where('user_id',$uid);
-$done=$this->db->update($this->table,$data);
-$rows=$this->db->affected_rows();
+		$data = array("state" => 0);
 
-if($rows==1){
+		$this->db->where('user_id', $uid);
+		$done = $this->db->update($this->table, $data);
+		$rows = $this->db->affected_rows();
 
-	return "User has been blocked";
+		if ($rows == 1) {
 
+			return "User has been blocked";
+		} else {
 
-} else{
 
 
+			return "Failed, Try Again";
+		}
+	}
 
-	return "Failed, Try Again";
-}
 
+	//unblock user
 
+	public function unblockUser($postdata)
+	{
 
+		$uid = $postdata['user_id'];
 
+		$data = array("state" => 1);
 
+		$this->db->where('user_id', $uid);
+		$done = $this->db->update($this->table, $data);
+		$rows = $this->db->affected_rows();
 
-}
+		if ($rows == 1) {
 
+			return "User has been Unblocked";
+		} else {
 
-//unblock user
 
-public function unblockUser($postdata){
 
-$uid=$postdata['user_id'];
+			return "Failed, Try Again";
+		}
+	}
 
-$data=array("state"=>1);
+	public function getAdmins()
+	{
 
-$this->db->where('user_id',$uid);
-$done=$this->db->update($this->table,$data);
-$rows=$this->db->affected_rows();
+		$this->db->where('userType', 1);
+		$this->db->or_where('userType', 0);
+		$qry = $this->db->get($this->table);
 
-if($rows==1){
-
-	return "User has been Unblocked";
-
-
-} else{
-
-
-
-	return "Failed, Try Again";
-}
-
-
-}
-
-public function getAdmins(){
-    
-    $this->db->where('userType',1);
-    $this->db->or_where('userType',0);
-    $qry=$this->db->get($this->table);
-     
-     return $qry->result();
-}
-
-
-
-
-
-
+		return $qry->result();
+	}
 }
