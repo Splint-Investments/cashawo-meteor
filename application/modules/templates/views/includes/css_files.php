@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 
 <?php
+    
+     Modules::run("auth/isLegal");
      $user=$this->session->userdata();
      $config= Modules::run("settings/getAll");
+
 ?>
 <html lang="zxx">
 <head>

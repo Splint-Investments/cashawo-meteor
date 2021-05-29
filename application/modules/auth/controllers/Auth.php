@@ -83,7 +83,7 @@ class Auth extends MX_Controller {
 
 	public function checkerUser($userdata){
 
-	if(!$userdata['isLoggedIn']){
+	if(!$userdata['role']){
 
 		redirect("auth");
 
@@ -91,7 +91,7 @@ class Auth extends MX_Controller {
 
 	else{
 
-  $this->session->set_userdata($userdata);
+     $this->session->set_userdata($userdata);
 			redirect("reports");
 	}
 

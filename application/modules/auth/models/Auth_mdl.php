@@ -32,8 +32,9 @@ public function loginChecker(){
 	if($rows!==0){
 
 	$person=$qry->row();
-
-
+	
+	if(empty($person->photo))
+	 $person->photo="avatar.jpg";
 	return $person;
 
    }
