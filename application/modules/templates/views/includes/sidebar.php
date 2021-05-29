@@ -24,7 +24,7 @@
 
             <a style="left:40px" data-toggle="collapse" href="#navbarToggleExternalContent" role="button" aria-expanded="false"
                aria-controls="navbarToggleExternalContent" class="btn-fab btn-fab-sm absolute fab-right-bottom fab-top btn-dark shadow1 ">
-                <i class="icon icon-more_vert"></i>
+                <i class="icon icon-search"></i>
             </a>
             <div class="user-panel p-6 light mb-2  bg-main">
                 <div>
