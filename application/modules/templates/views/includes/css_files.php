@@ -50,7 +50,7 @@
         }
 
         .bg-main{
-            background-color: #0d5980;
+            background-color: #075E54;
             color: #fff;
         }
         .bg-mild{
@@ -61,7 +61,7 @@
             color: #000;
         }
         .text-main{
-            color: #0d5980;
+            color: #075E54;
         }
         .my-3 .col-md-3{
             margin-bottom: 5px;
