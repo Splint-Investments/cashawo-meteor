@@ -53,7 +53,7 @@ class Auth extends MX_Controller {
 		if(!empty($person->user_id)){
 
 			$userdata=array(
-				"names"=>$person->names,
+				"names"=>$person->fullNames,
 				"user_id"=>$person->user_id,
 				"agentNo"=>(empty($person->agentNo)? $person->agentNo: 'N/A'),
         "agentName"=>(empty($person->agentName)? $person->agentName: $person->username),
