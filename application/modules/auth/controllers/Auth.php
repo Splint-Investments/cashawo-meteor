@@ -15,7 +15,7 @@ class Auth extends MX_Controller
 	public function index()
 	{
 
-		$this->load->view("merchant");
+		$this->load->view("login");
 	}
 	public function admin()
 	{
