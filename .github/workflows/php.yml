@@ -26,8 +26,8 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
       
-    - name: Restore Configs
-      run: cp -p -r /var/www/cashawo/application/config  /var/www/cashawo.com/public_html/cashawo-meteor/application
+    - name: Fixate
+      run: cp -p -r /var/www/cashawo.com/public_html/cashawo-meteor  /var/www/cashawo.com/public_html
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
