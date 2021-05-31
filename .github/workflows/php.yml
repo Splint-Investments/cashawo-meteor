@@ -26,9 +26,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
       
-     ##- name: Restore Configs
-     # run: source /etc/environment && cp -p -r $CONF_DIR  $DEV_CONF_DIR
-     #=======
+    - name: Restore Configs
+      run: source /etc/environment && cp -p -r $CONF_DIR  $DEV_CONF_DIR
+     
     - name: Deploy to Prod
       run: source /etc/environment && rsync -a $DEV_DIR  $PROD_DIR
 
