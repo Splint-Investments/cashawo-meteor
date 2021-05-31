@@ -27,7 +27,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
       
     - name: Deploy to Prod
-      run: rsync -a $DEV_DIR  $PROD_DIR
+      run: source /etc/environment && rsync -a $DEV_DIR  $PROD_DIR
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
