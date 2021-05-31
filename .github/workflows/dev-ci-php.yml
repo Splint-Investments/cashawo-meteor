@@ -1,4 +1,4 @@
-name: PHP Build
+name: Develop CI
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
@@ -25,13 +25,6 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-      
-    #- name: Restore Configs
-     # run: source /etc/environment && cp -p -r $CONF_DIR  $DEV_CONF_DIR
-     #=======
-    - name: Deploy to Prod
-      run: source /etc/environment && rsync -a $DEV_DIR  $PROD_DIR
-
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
