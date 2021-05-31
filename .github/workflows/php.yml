@@ -2,17 +2,13 @@ name: PHP Build
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ master ]
 jobs:
   build:
 
     runs-on: self-hosted
 
     steps:
-    - name: Automatic Merge Master
-      #/merge master
-      uses: lots0logs/gh-action-auto-merge@1.0.0
-      
     - uses: actions/checkout@v2
     
     - name: Validate composer.json and composer.lock
