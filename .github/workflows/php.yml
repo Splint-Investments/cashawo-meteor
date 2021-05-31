@@ -2,7 +2,7 @@ name: PHP Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
 jobs:
   build:
 
@@ -26,8 +26,12 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
       
+    #- name: Restore Configs
+     # run: source /etc/environment && cp -p -r $CONF_DIR  $DEV_CONF_DIR
+     #=======
     - name: Deploy to Prod
       run: source /etc/environment && rsync -a $DEV_DIR  $PROD_DIR
+
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
