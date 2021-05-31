@@ -26,7 +26,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
       
-    - name: Fixate
+    - name: Deploy to Prod
       run: rsync -a /var/www/cashawo.com/public_html/cashawo-meteor  /var/www/cashawo.com/public_html/prod
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
