@@ -9,8 +9,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Automatic Merge Master
+      uses: lots0logs/gh-action-auto-merge@1.0.0
+      
     - uses: actions/checkout@v2
-
+    
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
